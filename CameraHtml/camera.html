@@ -5,6 +5,16 @@
     }
     function photolibraryCallback(imageData) {
         var img = createImageWithBase64(imageData);
+        window.alert = function(name){
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display="none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        }
+
+        alert("哈哈");
         document.getElementById("photolibraryWrapper").appendChild(img);
     }
     function albumCallback(imageData) {
@@ -18,7 +28,8 @@
         img.style.height = "50px";
         return img;
     }
-</script>
+
+    </script>
 <p style="text-align:center;padding:20px;">
     <a href="js-call://camera/cameraCallback">拍照</a>&nbsp;&nbsp;
     <a href="js-call://photolibrary/photolibraryCallback">图库</a>&nbsp;&nbsp;
